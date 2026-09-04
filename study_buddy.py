@@ -6,13 +6,47 @@ from docx import Document
 import io
 import json
 import re
+import base64
 from google.cloud import firestore
 from google.oauth2 import service_account
 
 # ============================================================
 # 1. PAGE SETUP
 # ============================================================
-st.set_page_config(page_title="Study Buddy", page_icon="📚", layout="wide")
+st.set_page_config(page_title="Study Buddy", page_icon="tab_logo.png", layout="wide")
+
+# --- 1b. BACKGROUND IMAGE ---
+def set_background(image_path):
+    with open(image_path, "rb") as f:
+        img_data = base64.b64encode(f.read()).decode()
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/png;base64,{img_data}");
+            background-size: 320px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #000000;
+        }}
+
+        /* Keep chat/quiz/flashcard content readable over the background */
+        [data-testid="stChatMessage"], .stContainer, div[data-testid="stVerticalBlockBorderWrapper"] {{
+            background-color: rgba(20, 20, 20, 0.85);
+            border-radius: 12px;
+        }}
+
+        /* Sidebar stays solid dark so controls are legible */
+        [data-testid="stSidebar"] {{
+            background-color: rgba(10, 10, 10, 0.97);
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+set_background("background.png")
 
 # ============================================================
 # 2. CLOUD DATABASE CONNECTION (Firestore)
@@ -121,6 +155,7 @@ def load_materials():
 # 7. SIDEBAR — upload + material picker
 # ============================================================
 with st.sidebar:
+    st.image("logo.png", width=110)
     st.title("📚 Study Buddy")
     st.caption(f"Signed in as **{USER_ID}**")
     if st.button("Switch ID"):
