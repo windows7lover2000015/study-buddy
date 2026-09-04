@@ -152,7 +152,37 @@ def load_materials():
         return {}
 
 # ============================================================
-# 7. SIDEBAR — upload + material picker
+# 7. WELCOME POPUP
+# ============================================================
+if "popup_shown" not in st.session_state:
+    st.session_state.popup_shown = False
+
+@st.dialog("👋 Welcome!")
+def show_welcome_box():
+    st.markdown("""
+    ### Hello! This is Adrito's Study Buddy.
+    This chatbot is made by **Adrito Roy** and is open source.
+
+    This buddy has cloud storage and the study chats sync with the cloud to your designated Study ID.
+    Please note that if the Study Buddy exceeds 1 million messages in total, the study chat storage
+    will reset because there is a fixed quota, and you will lose all of your saved study chats.
+
+    🌐 **Repository link:**
+    [study-buddy](https://github.com/windows7lover2000015/study-buddy/blob/main)
+
+    🚀 **My other project(s):**
+    [AI Chatbot](https://adritos-ai-chatbot.streamlit.app/)
+    """)
+    st.divider()
+    if st.button("Ok!", use_container_width=True, type="primary"):
+        st.session_state.popup_shown = True
+        st.rerun()
+
+if not st.session_state.popup_shown:
+    show_welcome_box()
+
+# ============================================================
+# 8. SIDEBAR — upload + material picker
 # ============================================================
 with st.sidebar:
     st.image("logo.png", width=110)
@@ -191,7 +221,7 @@ current = st.session_state.materials[selected_material]
 material_text = current.get("text", "")
 
 # ============================================================
-# 8. MAIN AREA — TABS
+# 9. MAIN AREA — TABS
 # ============================================================
 st.title(f"📖 {selected_material}")
 tab_summary, tab_quiz, tab_flash, tab_chat = st.tabs(
