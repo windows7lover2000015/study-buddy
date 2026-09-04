@@ -1,0 +1,6 @@
+streamlit
+groq
+PyPDF2
+python-docx
+google-cloud-firestore
+google-auth
