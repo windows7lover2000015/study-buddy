@@ -186,7 +186,7 @@ with tab_summary:
 # ---------- QUIZ TAB ----------
 with tab_quiz:
     if "quiz" not in current:
-        num_q = st.slider("Number of questions", 3, 15, 5)
+        num_q = st.slider("Number of questions", 3, 30, 5)
         if st.button("Generate Quiz", type="primary"):
             with st.spinner("Writing quiz..."):
                 raw = ask_groq(
