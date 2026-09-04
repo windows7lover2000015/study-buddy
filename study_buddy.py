@@ -13,7 +13,7 @@ from google.oauth2 import service_account
 # ============================================================
 # 1. PAGE SETUP
 # ============================================================
-st.set_page_config(page_title="Study Buddy", page_icon="tab_logo.png", layout="wide")
+st.set_page_config(page_title="Study Buddy", page_icon="logo.png", layout="wide")
 
 # --- 1b. BACKGROUND IMAGE ---
 def set_background(image_path):
