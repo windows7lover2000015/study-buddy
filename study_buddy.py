@@ -163,9 +163,9 @@ def show_welcome_box():
     ### Hello! This is Adrito's Study Buddy.
     This chatbot is made by **Adrito Roy** and is open source.
 
-    This buddy has cloud storage and the study chats sync with the cloud to your designated Study ID.
-    Please note that if the Study Buddy exceeds 1 million messages in total, the study chat storage
-    will reset because there is a fixed quota, and you will lose all of your saved study chats.
+    This buddy has cloud storage and the study materials sync with the cloud to your designated Study ID.
+    Please note that if the Study Buddy exceeds 1 million study material chats in total, the study material chat storage
+    will reset because there is a fixed quota, and you will lose all of your saved study material chats.
 
     🌐 **Repository link:**
     [study-buddy](https://github.com/windows7lover2000015/study-buddy/blob/main)
